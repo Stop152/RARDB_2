@@ -1,26 +1,33 @@
 package lv.accenture.bootcamp.rardb.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Movie {
 
-	String Title; // vai variable names no json nav case sensitive?
-	Integer Year;
+	
+	String title; // vai variable names no json nav case sensitive?
+	Integer year;
+	
+	@Id
 	String imdbID;
-	String Poster;
+	String poster;
 
 	public String getTitle() {
-		return Title;
+		return title;
 	}
 
 	public void setTitle(String title) {
-		Title = title;
+		this.title = title;
 	}
 
 	public Integer getYear() {
-		return Year;
+		return year;
 	}
 
 	public void setYear(Integer year) {
-		Year = year;
+		this.year = year;
 	}
 
 	public String getImdbID() {
@@ -32,11 +39,11 @@ public class Movie {
 	}
 
 	public String getPoster() {
-		return Poster;
+		return poster;
 	}
 
 	public void setPoster(String poster) {
-		Poster = poster;
+		this.poster = poster;
 	}
 
 }
