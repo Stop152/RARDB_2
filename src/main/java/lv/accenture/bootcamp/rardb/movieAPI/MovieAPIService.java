@@ -22,23 +22,26 @@ public class MovieAPIService {
 	public void getMovie(String requestedMovieTitle) {
 
 		try {
+			System.out.println(requestUrl + "?t=" + requestedMovieTitle + "&apikey=" + apiKey);
 			URL url = new URL(requestUrl + "?t=" + requestedMovieTitle + "&apikey=" + apiKey);
 			// URL url= new URL(requestUrl);
 			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 			urlConnection.setRequestMethod("GET");
 			urlConnection.setReadTimeout(3000);
 			urlConnection.connect();
+			
 
-			InputStream inputStream = urlConnection.getInputStream();
-			InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+			
+			//InputStream inputStream = urlConnection.getInputStream();
+//			InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+//			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
 			StringBuilder sb = new StringBuilder();
 
 			String line = null;
-			while ((line = bufferedReader.readLine()) != null) {
-				sb.append(line + "\n");
-			}
+//			while ((line = bufferedReader.readLine()) != null) {
+//				sb.append(line + "\n");
+//			}
 
 			String jsonResponse = sb.toString();
 			System.out.println(jsonResponse);
@@ -51,7 +54,7 @@ public class MovieAPIService {
 	}
 
 	public static void main(String[] args) {
-
+		
 		MovieAPIService service = new MovieAPIService();
 		service.getMovie("Fight Club");
 	}
