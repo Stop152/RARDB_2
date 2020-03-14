@@ -6,13 +6,19 @@ import javax.persistence.Id;
 @Entity
 public class Movie {
 
-	
-	String title; // vai variable names no json nav case sensitive?
+	String title;
 	Integer year;
-	
+
 	@Id
 	String imdbID;
 	String poster;
+
+	public Movie() {
+	}
+
+	public Movie(String title, Integer year, String poster) {
+
+	}
 
 	public String getTitle() {
 		return title;
