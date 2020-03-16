@@ -3,15 +3,24 @@ package lv.accenture.bootcamp.rardb.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonIgnoreProperties(ignoreUnknown=true)
 @Entity
 public class Movie {
 
-	String title;
-	Integer year;
+	@JsonProperty("Title")
+	private String title;
+	@JsonProperty("Year")
+	private Integer year;
 
 	@Id
-	String imdbID;
-	String poster;
+	@JsonProperty("imdbID")
+	private String imdbID;
+	@JsonProperty("Poster")
+	private String poster;
+
 
 	public Movie() {
 	}
@@ -50,6 +59,12 @@ public class Movie {
 
 	public void setPoster(String poster) {
 		this.poster = poster;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Movie [title=" + title + ", year=" + year + ", imdbID=" + imdbID + ", poster=" + poster + "]";
 	}
 
 }
