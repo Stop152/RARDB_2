@@ -11,9 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
-
-
 import lv.accenture.bootcamp.rardb.model.Movie;
 import lv.accenture.bootcamp.rardb.model.MovieSearch;
 
@@ -29,7 +26,7 @@ public class MovieAPIService {
 	List<Movie> movieList;
 	Movie movie;
 
-	public void getMovie(String requestedMovieTitle) {
+	public void getMovieByTitle(String requestedMovieTitle) {
 		requestedMovieTitle = requestedMovieTitle.replaceAll(" ", "%20");
 		try {
 			System.out.println(requestUrl + "?t=" + requestedMovieTitle + "&apikey=" + apiKey);
@@ -69,8 +66,48 @@ public class MovieAPIService {
 
 	}
 
-	public void searchMoviePhrase(String requestedMovieTitle) {
+	public void getMovieById(String requestedMovieId) {
+		try {
+			System.out.println(requestUrl + "?i=" + requestedMovieId + "&apikey=" + apiKey);
+
+			URL url = new URL(requestUrl + "?i=" + requestedMovieId + "&apikey=" + apiKey);
+			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+			urlConnection.setRequestMethod("GET");
+			urlConnection.setReadTimeout(3000);
+			urlConnection.connect();
+
+			InputStream inputStream = urlConnection.getInputStream();
+			InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+			StringBuilder sb = new StringBuilder();
+
+			String line = null;
+			while ((line = bufferedReader.readLine()) != null) {
+				sb.append(line + "\n");
+			}
+
+			String jsonResponse = sb.toString();
+			System.out.println(jsonResponse);
+
+			bufferedReader.close();
+
+			ObjectMapper objectMapper = new ObjectMapper();
+
+			movie = new Movie();
+			movie = objectMapper.readValue(jsonResponse, Movie.class);
+			System.out.println("Movie : " + movie.toString());
+
+		} catch (Exception e) {
+
+			throw new RuntimeException(e);
+		}
+
+	}
+
+	public MovieSearch searchMoviePhrase(String requestedMovieTitle) {
 		requestedMovieTitle = requestedMovieTitle.replaceAll(" ", "%20");
+
 		try {
 
 			URL url = new URL(requestUrl + "?s=" + requestedMovieTitle + "&apikey=" + apiKey);
@@ -99,8 +136,10 @@ public class MovieAPIService {
 
 			MovieSearch movieSearch = new MovieSearch();
 			movieSearch = objectMapper.readValue(jsonResponse, MovieSearch.class);
-			
+
 			System.out.println(movieSearch.toString());
+
+			return movieSearch;
 
 		} catch (Exception e) {
 
