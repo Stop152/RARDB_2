@@ -1,6 +1,6 @@
 package lv.accenture.bootcamp.rardb.model;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,17 +8,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class MovieSearch {
 
 	@JsonProperty("Search")
-	private Movie[] search = new Movie[10];
+	private List<MoviePreview> search = new ArrayList<>();
 	@JsonProperty("totalResults")
 	private Integer totalResults;
 	@JsonProperty("Response")
 	private boolean response;
 
-	public Movie[] getSearch() {
+	public List<MoviePreview> getSearch() {
 		return search;
 	}
 
-	public void setSearch(Movie[] search) {
+	public void setSearch(List<MoviePreview> search) {
 		this.search = search;
 	}
 
@@ -40,8 +40,9 @@ public class MovieSearch {
 
 	@Override
 	public String toString() {
-		return "MovieSearch [search=" + Arrays.toString(search) + ", totalResults=" + totalResults + ", response="
-				+ response + "]";
+		return "MovieSearch [search=" + search + ", totalResults=" + totalResults + ", response=" + response + "]";
 	}
+
+	
 
 }

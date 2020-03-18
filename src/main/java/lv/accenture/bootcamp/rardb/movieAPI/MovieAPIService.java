@@ -98,7 +98,7 @@ public class MovieAPIService {
 			ObjectMapper objectMapper = new ObjectMapper();
 
 			MovieSearch movieSearch = new MovieSearch();
-			movieSearch = objectMapper.readValue(jsonResponse, Movie.class);
+			movieSearch = objectMapper.readValue(jsonResponse, MovieSearch.class);
 			
 			System.out.println(movieSearch.toString());
 
