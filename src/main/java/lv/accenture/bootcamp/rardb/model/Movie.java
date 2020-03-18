@@ -8,12 +8,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
 @Entity
-public class Movie {
+public class Movie extends MovieSearch {
 
 	@JsonProperty("Title")
 	private String title;
 	@JsonProperty("Year")
-	private Integer year;
+	private String year;
 
 	@Id
 	@JsonProperty("imdbID")
@@ -25,7 +25,7 @@ public class Movie {
 	public Movie() {
 	}
 
-	public Movie(String title, Integer year, String poster) {
+	public Movie(String title, String year, String poster) {
 
 	}
 
@@ -37,11 +37,11 @@ public class Movie {
 		this.title = title;
 	}
 
-	public Integer getYear() {
+	public String getYear() {
 		return year;
 	}
 
-	public void setYear(Integer year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 

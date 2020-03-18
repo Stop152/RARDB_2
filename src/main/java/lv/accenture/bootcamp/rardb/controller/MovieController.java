@@ -23,6 +23,7 @@ public class MovieController {
 		Iterable<Movie> movie = movieRepository.findAll();
 		model.addAttribute("movie", movie);
 		movieAPIService.getMovie("John Wick");
+		movieAPIService.searchMoviePhrase("Batman");
 		return "movies-index";
 	}
 }
