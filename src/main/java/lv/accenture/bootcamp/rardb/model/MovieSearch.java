@@ -43,6 +43,4 @@ public class MovieSearch {
 		return "MovieSearch [search=" + search + ", totalResults=" + totalResults + ", response=" + response + "]";
 	}
 
-	
-
 }

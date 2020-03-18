@@ -1,0 +1,46 @@
+<! DOCTYPE html>
+<html lang = "lv" xmlns: th = "http://www.thymeleaf.org">
+<head>
+    <title>MOVIE'S COMMENTS</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+<h3> THE BEST TOP10 COMMENTS </h3>
+   <form th:action="@{/movies/search}" method="get">
+    		<input type="text" title="title" id="title" th:value="${title}"/>
+    		<input type="submit" value="SEARCH MOVIE"/>    		
+		</form>
+        <div th:if="${not #lists.isEmpty(movies)}">
+        <table class="table table-bordered">
+        <tr>
+         <tr>
+    <th>IP</th>
+    <th>TITLE</th>
+    <th>YEAR</th>
+    <th>POSTER</th>
+    <th>LATEST COMMENT</th>
+    <th>RANK</th>
+    <th>YOUR COMMENT</th>
+  </tr>
+  <tr th:each="movie: ${movies}">
+        <td th:text="${movie.ip}"/>
+        <td th:text="${movie.title}"/>
+        <td th:text="${movie.year}"/>
+        <td>
+        <img th:src="${movie.poster}" width="110" height="100"/>
+        </td>
+        <td th:text="${movie.lastcomment}"/>
+        <td th:text="${movie.rank}"/>
+        <td>
+        	<a th:href="@{/movies/comment/{id}(id=${movie.ip})}" class="btn btn-outline-primary">
+    			<span> ENTER TO COMMENT</span>
+    			</a>
+    			<br/><br/>  	
+        </td>
+        </tr>
+</table> 	 
+    </ div >
+</ body >
+</html>
