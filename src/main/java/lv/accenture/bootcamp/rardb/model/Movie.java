@@ -11,78 +11,70 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.HashMap;
 import java.util.List;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 public class Movie {
 
-	@JsonProperty("Title")
-	private String title;
-	@JsonProperty("Year")
-	private String year;
+    @JsonProperty("Title")
+    private String title;
+    @JsonProperty("Year")
+    private String year;
 
-	@Id
-	@JsonProperty("imdbID")
-	private String imdbID;
-	@JsonProperty("Poster")
-	private String poster;
+    @Id
+    @JsonProperty("imdbID")
+    private String imdbID;
+    @JsonProperty("Poster")
+    private String poster;
 
-	private List<Review> review = null;
+    private List<Review> review = null;
 
-	private Movie movie = new Movie();
-	String movieId = movie.getImdbID();
-	private HashMap<String, Object> movieMap = new HashMap<String, Object>();
+//	private Movie movie = new Movie();
+//	String movieId = movie.getImdbID();
+//	private HashMap<String, Object> movieMap = new HashMap<String, Object>();
 
+    public Movie() {
+    }
 
+    public Movie(String title, String year, String poster) {
 
-	@Positive(message ="The rank should be between 1 and 5. Please enter the appropriate figure")
-	private Integer rank;
-	@Size(min = 2, max = 256, message ="The comment is too long")
-	private String comment;
+    }
 
+    public String getTitle() {
+        return title;
+    }
 
-	public Movie() {
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public Movie(String title, String year, String poster) {
+    public String getYear() {
+        return year;
+    }
 
-	}
+    public void setYear(String year) {
+        this.year = year;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public String getImdbID() {
+        return imdbID;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setImdbID(String imdbID) {
+        this.imdbID = imdbID;
+    }
 
-	public String getYear() {
-		return year;
-	}
+    public String getPoster() {
+        return poster;
+    }
 
-	public void setYear(String year) {
-		this.year = year;
-	}
-
-	public String getImdbID() {
-		return imdbID;
-	}
-
-	public void setImdbID(String imdbID) {
-		this.imdbID = imdbID;
-	}
-
-	public String getPoster() {
-		return poster;
-	}
-
-	public void setPoster(String poster) {
-		this.poster = poster;
-	}
+    public void setPoster(String poster) {
+        this.poster = poster;
+    }
 
 
-	@Override
-	public String toString() {
-		return "Movie [title=" + title + ", year=" + year + ", imdbID=" + imdbID + ", poster=" + poster + "]";
-	}
+    @Override
+    public String toString() {
+        return "Movie [title=" + title + ", year=" + year + ", imdbID=" + imdbID + ", poster=" + poster + "]";
+    }
 
 }

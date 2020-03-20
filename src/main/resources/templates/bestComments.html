@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="container">
-    <h3> TOP10 COMMENTED MOVIES </h3>
+    <h3> TOP RATINGS </h3>
     <form th:action="@{/movies/search}" method="get">
         <input type="text" title="title" id="title" th:value="${title}"/>
         <input type="submit" value="SEARCH MOVIE"/>
@@ -16,24 +16,22 @@
         <table class="table table-bordered">
             <tr>
             <tr>
-                <th>IP</th>
+                <th>ID</th>
                 <th>TITLE</th>
                 <th>YEAR</th>
                 <th>POSTER</th>
-                <th>RANK</th>
             </tr>
             <tr th:each="movie: ${movies}">
-                <td th:text="${movie.ip}"/>
+                <td th:text="${movie.imdbID}"/>
                 <td th:text="${movie.title}"/>
                 <td th:text="${movie.year}"/>
                 <td>
-                    <img th:src="${movie.poster}" width="110" height="100"/>
+                    <img th:src="${movie.poster}" width="110"/>
                 </td>
-                <td th:text="${movie.rank}"/>
             </tr>
         </table>
         <div>
-            <a th:href="@{/movie}" class="btn btn-outline-primary"> RETURN TO THE BEGINNING </button></a>
+            <a th:href="@{/movie}" class="btn btn-outline-primary"> HOME </button></a>
             <a th:href="@{/home}" class="btn btn-outline-primary"> EXIT </button></a>
             <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </button></a> </div>
     </div>

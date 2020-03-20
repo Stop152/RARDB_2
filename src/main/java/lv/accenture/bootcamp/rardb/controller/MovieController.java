@@ -39,9 +39,9 @@ public class MovieController {
     public String movieIndex(Model model) {
         Iterable<Movie> movie = movieRepository.findAll();
         model.addAttribute("movie", movie);
-        movieAPIService.getMovieByTitle("John Wick");
-        movieAPIService.searchMoviePhrase("Back to");
-        movieAPIService.getMovieById("tt0096895");
+        movieAPIService.getMovieByTitle("John Wick"); //shis ir testam
+        movieAPIService.searchMoviePhrase("Back to"); //shis ir testam
+        movieAPIService.getMovieById("tt0096895"); //shis ir testam
         return "movies-index";
     }
 
@@ -55,40 +55,25 @@ public class MovieController {
 
         return "search-index";
     }
-//
-//    @PostMapping("/movie/add-comment")
-//    public String addComment(@Valid Movie commentToAdd, @Valid Movie rankToAdd, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//            return "add-comment";
-//        }
-//        movieRepository.save(commentToAdd);
-//        movieRepository.save(rankToAdd);
-//        return "redirect:/movie";
-//    }
 
-//    @PostMapping("/movie/add-comment/{imdbID}")
-    public String addComment(@Valid Movie reviewToAdd, BindingResult bindingResult, @PathVariable Long imdbID) {
+
+    //    @PostMapping("/movie/add-review/{imdbID}")
+    public String addReview(@Valid Movie reviewToAdd, @Valid Integer ratingToAdd, BindingResult bindingResult, @PathVariable Long imdbID) {
         if (bindingResult.hasErrors()) {
-            return "add-comment";
+            return "add-review";
         }
-
-
-
-        movieRepository.findAllById();
-
-
-        reviewToAdd = reviewRepository.save(reviewToAdd);
-
-
-
+        movieRepository.save(reviewToAdd);
+        movieRepository.save(ratingToAdd);
+        reviewRepository.save(reviewToAdd);
         return "redirect:/movie";
+
     }
 
 
-//	@GetMapping("/movie/delete-comment/{imdbID}")
-//	public String deleteAllComment(@PathVariable Long imdbID) {
-//		movieRepository.deleteComment(imdbID);
-//		movieRepository.deleteRank(imdbID);
-//		return "redirect:/movie";
-//	}
+    @GetMapping("/movie/delete-review/{id}")
+    public String clearReviews(@PathVariable Long id) {
+        movieRepository.deleteAllReviews();
+        movieRepository.deleteAllRating();
+        return "redirect:/movie";
+    }
 }

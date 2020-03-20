@@ -8,25 +8,25 @@
 <body>
 <div class="container">
     <h3>COMMENTS ABOUT</h3>
-    <td th:text="${movieCandidate.Title}"/>
-    <td th:text="${movieCandidate.year}"/>
+    <td th:text="${movie.title}"/>
+    <td th:text="${movie.year}"/>
     <td>
-        <img th:src="${movieCandidate.poster}" height="150px"/>
+        <img th:src="${movie.poster}" height="150px"/>
     </td>
     <table class="table table-bordered">
         <tr>
             <th>COMMENT</th>
-            <th>RANK</th>
+    <!--        <th>RANK</th> -->
         </tr>
         <tr th:each="movie: ${movies}">
             <td th:text="${movie.comment}"/>
-            <td th:text="${movie.rank}"/>
+     <!--       <td th:text="${movie.rank}"/> -->
     </table>
     <div class="form-group col-md-8">
-        <input type="submit" class="btn btn-primary" value="ADD YOUR COMMENT AND RANK">
+        <input type="submit" class="btn btn-primary" value="ADD YOUR COMMENT">
     </div>
     <div>
-        <a th:href="@{/movie}" class="btn btn-outline-primary"> RETURN TO THE BEGINNING </button></a>
+        <a th:href="@{/movie}" class="btn btn-outline-primary"> HOME </button></a>
         <a th:href="@{/home}" class="btn btn-outline-primary"> EXIT </button></a>
         <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </button></a>
     </div>
