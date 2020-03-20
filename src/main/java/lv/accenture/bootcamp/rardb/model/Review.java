@@ -11,7 +11,7 @@ public class Review {
 
     @Size(min = 2, max = 256, message ="The comment is too long")
     private String text;
-    private User user; //japadoma, ka no sejienes id var izvilkt
+ //   private User user; //japadoma, ka no sejienes id var izvilkt
     @Positive(message ="The rank should be between 1 and 10. Please enter the appropriate figure")
     private Double rating;
     @Id
@@ -35,13 +35,13 @@ public class Review {
         this.text = text;
     }
 
-    public User getUser() {
-        return user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     public Double getRating() {
         return rating;

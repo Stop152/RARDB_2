@@ -58,22 +58,20 @@ public class MovieController {
 
 
     //    @PostMapping("/movie/add-review/{imdbID}")
-    public String addReview(@Valid Movie reviewToAdd, @Valid Integer ratingToAdd, BindingResult bindingResult, @PathVariable Long imdbID) {
+    public String addReview(@Valid Review reviewToAdd, @Valid Integer ratingToAdd, BindingResult bindingResult, @PathVariable Long imdbID) {
         if (bindingResult.hasErrors()) {
             return "add-review";
         }
-        movieRepository.save(reviewToAdd);
-        movieRepository.save(ratingToAdd);
         reviewRepository.save(reviewToAdd);
         return "redirect:/movie";
 
     }
 
 
-    @GetMapping("/movie/delete-review/{id}")
-    public String clearReviews(@PathVariable Long id) {
-        movieRepository.deleteAllReviews();
-        movieRepository.deleteAllRating();
-        return "redirect:/movie";
-    }
+//    @GetMapping("/movie/delete-review/{imdbId}")
+//    public String clearReviews(@PathVariable String imdbId) {
+//        movieRepository.deleteAllReviews();
+//        movieRepository.deleteAllRating();
+//        return "redirect:/movie";
+//    }
 }

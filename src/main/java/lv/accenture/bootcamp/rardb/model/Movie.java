@@ -1,5 +1,6 @@
 package lv.accenture.bootcamp.rardb.model;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.Positive;
@@ -26,7 +27,9 @@ public class Movie {
     @JsonProperty("Poster")
     private String poster;
 
-    private List<Review> review = null;
+
+    @ElementCollection
+    private List<Review> review;
 
 //	private Movie movie = new Movie();
 //	String movieId = movie.getImdbID();
