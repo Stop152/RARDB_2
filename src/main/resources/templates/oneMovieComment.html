@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>One Movie</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h3>COMMENTS ABOUT</h3>
+    <td th:text="${movieCandidate.Title}"/>
+    <td th:text="${movieCandidate.year}"/>
+    <td>
+        <img th:src="${movieCandidate.poster}" height="150px"/>
+    </td>
+    <table class="table table-bordered">
+        <tr>
+            <th>COMMENT</th>
+            <th>RANK</th>
+        </tr>
+        <tr th:each="movie: ${movies}">
+            <td th:text="${movie.comment}"/>
+            <td th:text="${movie.rank}"/>
+    </table>
+    <div class="form-group col-md-8">
+        <input type="submit" class="btn btn-primary" value="ADD YOUR COMMENT AND RANK">
+    </div>
+    <div>
+        <a th:href="@{/movie}" class="btn btn-outline-primary"> RETURN TO THE BEGINNING </button></a>
+        <a th:href="@{/home}" class="btn btn-outline-primary"> EXIT </button></a>
+        <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </button></a>
+    </div>
+</body>
+</html>

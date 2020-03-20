@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Comment</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <td th:text="${movieCandidate.Title}"/>
+    <td th:text="${movieCandidate.year}" />
+    <td>
+        <img th:src="${movieCandidate.poster}" height="150px"/>
+    </td>
+    <form action="#"
+          th:action="@{/movie/myComment}"
+          th:object="${movie}" method="post">
+        <div class="row">
+            <div class="form-group col-md-8">
+                <label for="comment" class="col-form-label"> MY COMMENT </label>
+                <input type="text" th:field="*{comment}" class="form-control" id="comment">
+                <span th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}" class="text-danger"/>
+            </div>
+            <div class="form-group col-md-8">
+                <label for="rank" class="col-form-label"> MY RANK (1-5) </label>
+                <input type="text" th:field="*{rank}" class="form-control" id="rank">
+                <span th:if="${#fields.hasErrors('rank')}" th:errors="*{rank}" class="text-danger"/>
+            </div>
+            <div class="form-group col-md-8">
+                <input type="submit" class="btn btn-primary" value="ADD COMMENT AND RANK">
+            </div>
+    </form>
+    <div>
+        <a th:href="@{/movie}" class="btn btn-outline-primary"> RETURN TO THE BEGINNING </button></a>
+        <a th:href="@{/home}" class="btn btn-outline-primary"> EXIT </button></a>
+    </div>
+</div>
+</body>
+</html>

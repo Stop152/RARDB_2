@@ -67,22 +67,22 @@ public class MovieController {
 //    }
 
 //    @PostMapping("/movie/add-comment/{imdbID}")
-//    public String addComment(@Valid Movie reviewToAdd, BindingResult bindingResult, @PathVariable Long imdbID) {
-//        if (bindingResult.hasErrors()) {
-//            return "add-comment";
-//        }
-//
-//
-//
-//        movieRepository.findAllById();
-//
-//
-//        reviewToAdd = reviewRepository.save(reviewToAdd);
-//
-//
-//
-//        return "redirect:/movie";
-//    }
+    public String addComment(@Valid Movie reviewToAdd, BindingResult bindingResult, @PathVariable Long imdbID) {
+        if (bindingResult.hasErrors()) {
+            return "add-comment";
+        }
+
+
+
+        movieRepository.findAllById();
+
+
+        reviewToAdd = reviewRepository.save(reviewToAdd);
+
+
+
+        return "redirect:/movie";
+    }
 
 
 //	@GetMapping("/movie/delete-comment/{imdbID}")
