@@ -7,38 +7,36 @@
 </head>
 <body>
 <div class="container">
-    <h3>Movie results:</h3>
-
-  <div th:if="${not #lists.isEmpty(movieSearch)}">
-    <table class="table table-bordered">
-        <tr>
-            <th>TITLE</th>
-            <th>YEAR</th>
-            <th>POSTER</th>
-        </tr>
-        
-        
-        
-        
-      <tr th:each="movieCandidate : ${movieCandidates}">
-            <td th:text="${movieCandidate.Title}"/>
-            <td th:text="${movieCandidate.year}"/>
-            <td>
-                <img th:src="${movieCandidate.poster}" height="150px"/>
-            </td>
-        </tr>
-    </table>
+    <h3>CLICK ON THE MOVIE TO SEE THE COMMENTS OR LEAVE YOUR COMMENT</h3>
+    <div th:if="${not #lists.isEmpty(movieSearch)}">
+        <table class="table table-bordered">
+            <tr>
+                <th>TITLE</th>
+                <th>YEAR</th>
+                <th>POSTER</th>
+            </tr>
+            <tr th:each="movieCandidate : ${movieCandidates}">
+                <td th:text="${movieCandidate.Title}"/>
+                <td th:text="${movieCandidate.year}"/>
+                <td>
+                    <img th:src="${movieCandidate.poster}" height="150px"/>
+                </td>
+            </tr>
+        </table>
     </div>
-
-    <div th:unless="${not #lists.isEmpty(cats)}">
+    <div th:unless="${not #lists.isEmpty(movieCandidates)}">
         <div class="card">
             <div class="card-body">
-                No movies with similar name.
+                No movies with similar name
             </div>
         </div>
     </div>
-
-   
+    <br/><br/>
+    <div>
+        <a th:href="@{/movie}" class="btn btn-outline-primary"> RETURN TO THE BEGINNING </button></a>
+        <a th:href="@{/home}" class="btn btn-outline-primary"> EXIT </button></a>
+        <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </button></a>
+    </div>
 </div>
 </body>
 </html>

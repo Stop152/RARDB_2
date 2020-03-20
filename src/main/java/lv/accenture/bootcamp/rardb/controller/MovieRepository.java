@@ -12,6 +12,8 @@ import lv.accenture.bootcamp.rardb.model.Movie;
 
 @Repository
 public interface MovieRepository extends CrudRepository<Movie,String>{
+
+
 	
 } 
 

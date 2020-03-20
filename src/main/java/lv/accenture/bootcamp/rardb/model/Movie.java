@@ -2,9 +2,14 @@ package lv.accenture.bootcamp.rardb.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.HashMap;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
 @Entity
@@ -20,6 +25,19 @@ public class Movie {
 	private String imdbID;
 	@JsonProperty("Poster")
 	private String poster;
+
+	private List<Review> review = null;
+
+	private Movie movie = new Movie();
+	String movieId = movie.getImdbID();
+	private HashMap<String, Object> movieMap = new HashMap<String, Object>();
+
+
+
+	@Positive(message ="The rank should be between 1 and 5. Please enter the appropriate figure")
+	private Integer rank;
+	@Size(min = 2, max = 256, message ="The comment is too long")
+	private String comment;
 
 
 	public Movie() {
