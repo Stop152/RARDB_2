@@ -38,6 +38,28 @@ public class MovieSearch {
 		this.response = response;
 	}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	@Override
 	public String toString() {
 		return "MovieSearch [search=" + search + ", totalResults=" + totalResults + ", response=" + response + "]";

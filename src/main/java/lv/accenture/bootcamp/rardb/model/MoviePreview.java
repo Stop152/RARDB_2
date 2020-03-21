@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class MoviePreview {
 
 	@JsonProperty("Title")
-	private String Title;
+	private String title;
 	@JsonProperty("Year")
 	private String year;
 	@JsonProperty("imdbID")
@@ -16,11 +16,11 @@ public class MoviePreview {
 	private String poster;
 
 	public String getTitle() {
-		return Title;
+		return title;
 	}
 
 	public void setTitle(String title) {
-		this.Title = title;
+		this.title = title;
 	}
 
 	public String getYear() {
@@ -55,9 +55,31 @@ public class MoviePreview {
 		this.poster = poster;
 	}
 
+//	public Movie selectMovie(String imdbID) {
+//		MovieSearch movieSearch;
+//		MoviePreview moviePreview = movieSearch.get;
+//		imdbID = moviePreview.getImdbID();
+//		Movie movie;
+//
+//		//iziet cauri listam, ja stringi equals, izvelas to
+//		if (imdbID.equals(movie.getImdbID())){
+//			return movie;
+//		}
+//
+//
+//		return movie;
+//	}
+
+
+
+
+
+
+
+
 	@Override
 	public String toString() {
-		return "MoviePreview [title=" + Title + ", year=" + year + ", imdbID=" + imdbID + ", type=" + type + ", poster="
+		return "MoviePreview [title=" + title + ", year=" + year + ", imdbID=" + imdbID + ", type=" + type + ", poster="
 				+ poster + "]";
 	}
 

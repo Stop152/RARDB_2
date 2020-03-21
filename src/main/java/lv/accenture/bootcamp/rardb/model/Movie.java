@@ -3,13 +3,10 @@ package lv.accenture.bootcamp.rardb.model;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.HashMap;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -29,7 +26,7 @@ public class Movie {
 
 
     @ElementCollection
-    private List<Review> review;
+    private List<Review> reviewList;
 
 //	private Movie movie = new Movie();
 //	String movieId = movie.getImdbID();
@@ -73,6 +70,18 @@ public class Movie {
     public void setPoster(String poster) {
         this.poster = poster;
     }
+
+    public void addReview(Review review) {
+
+        for (int i = 0; i < reviewList.size(); i++) {
+            if (reviewList.get(i) == null) {
+                reviewList.add(review);
+            }
+        }
+
+    }
+
+
 
 
     @Override

@@ -17,7 +17,7 @@
                 <th>POSTER</th>
             </tr>
             <tr th:each="movieCandidate : ${movieCandidates}">
-                <td th:text="${movieCandidate.Title}"/>
+                <td th:text="${movieCandidate.title}"/>
                 <td th:text="${movieCandidate.year}"/>
                 <td>
                     <img th:src="${movieCandidate.poster}" height="150px"/>

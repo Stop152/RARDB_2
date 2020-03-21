@@ -9,7 +9,7 @@
 <div class="container">
     <h3> TOP RATINGS </h3>
     <form th:action="@{/movies/search}" method="get">
-        <input type="text" title="title" id="title" th:value="${title}"/>
+        <input type="text" name="movieTitle" id="movieTitle" th:value="${movieTitle}"/>
         <input type="submit" value="SEARCH MOVIE"/>
     </form>
     <div th:if="${not #lists.isEmpty(movies)}">
