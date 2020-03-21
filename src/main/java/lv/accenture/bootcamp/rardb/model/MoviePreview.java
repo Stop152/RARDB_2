@@ -8,6 +8,7 @@ public class MoviePreview {
 	private String title;
 	@JsonProperty("Year")
 	private String year;
+
 	@JsonProperty("imdbID")
 	private String imdbID;
 	@JsonProperty("Type")
