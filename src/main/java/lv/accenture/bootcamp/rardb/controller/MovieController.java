@@ -59,23 +59,20 @@ public class MovieController {
     }
 
 
-    @GetMapping("/movie/select-movie/{imdbID}")
-    public void selectMovie(@PathVariable String imdbID) {
 
+    @GetMapping("/movie/select_movie")
+    public String selectMovie(@PathVariable(value = "imdbID") String imdbID, Model model) {
 
-        MovieSearch movieSearch;
-        // movieSearch.getSearch();
+        Optional<Movie> movie = Optional.ofNullable(movieAPIService.getMovieById(imdbID));
 
-        Movie movie;
+  //     Movie movie = movieAPIService.getMovieById(imdbID);
 
-
-        //   movieRepository.save(movie);
-
-
+        model.addAttribute("movie", movie.get());
+        return "oneMovieComment";
     }
 
 
-    @GetMapping("/movies/search")
+    @GetMapping("/movie/search")
     public String searchMovies(@RequestParam(value = "movieTitle") String movieTitle, Model model) {
 
         MovieSearch movieSearch = new MovieSearch();
@@ -87,16 +84,19 @@ public class MovieController {
     }
 
 
-    @PostMapping("/movie/add-review/{imdbID}")
-    public String addReview(@PathVariable String imdbID, @Valid Review reviewToAdd, BindingResult bindingResult) {
+    @PostMapping("/movie/add_review/{imdbID}")
+    public String addReview(@PathVariable(value = "imdbID") String imdbID, @Valid Review reviewToAdd, BindingResult
+            bindingResult) {
         if (bindingResult.hasErrors()) {
             return "add-review";
         }
-        Movie movie;
 
+        Movie movie = movieAPIService.getMovieById(imdbID);
+        movieRepository.save(movie);
         reviewToAdd.setMovieId(imdbID);
         reviewRepository.save(reviewToAdd);
-        //     movie.addReview(reviewToAdd);
+        movie.addReview(reviewToAdd);
+
 
         return "redirect:/movie";
 

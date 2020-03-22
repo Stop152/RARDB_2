@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MOVIE'S RANK</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<p>PLEASE LEAVE YOUR RATING:</p>
+<form action="/action_page.php">
+    <label for="rank">YOUR CHOICE:</label>
+    <select id="rank">
+        <option value=1>1*</option>
+        <option value=2>2*</option>
+        <option value=3>3*</option>
+        <option value=4>4*</option>
+        <option value=5>5*</option>
+        <option value=6>6*</option>
+        <option value=7>7*</option>
+        <option value=8>8*</option>
+        <option value=9>9*</option>
+        <option value=10>10*</option>
+    </select>
+    <input type="submit">
+</form>
+<td th:text="${movie.title}"/>
+<td th:text="${movie.year}"/>
+<td>
+    <img th:src="${movie.poster}" height="150px"/>
+</td>
+<div>
+    <a th:href="@{/movie}" class="btn btn-outline-primary"> HOME </button></a>
+    <a th:href="@{/home}" class="btn btn-outline-primary"> EXIT </button></a>
+</div>
+</br></br></br>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

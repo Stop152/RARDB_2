@@ -5,3 +5,24 @@ h1 {
 #app-body h1 {
 font-size: 1.5rem;
 }
+
+#first {
+    padding: 40px;
+    width: 50%;
+    float: left;
+    height: 400px;
+}
+#second {
+    padding: 40px;
+    width: 50%;
+    float: left;
+    height: 400px;
+}
+
+#full_page {
+    width: 100%;
+}
+
+form_width {
+    width: 100%;
+}

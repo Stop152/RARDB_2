@@ -28,6 +28,8 @@ public class Movie {
     private String poster;
 
 
+
+
     @ElementCollection
     private List<Review> reviewList;
 
@@ -74,6 +76,17 @@ public class Movie {
     public void setPoster(String poster) {
         this.poster = poster;
     }
+
+    public List<Review> getReviewList() {
+        return reviewList;
+    }
+
+    public void setReviewList(List<Review> reviewList) {
+        this.reviewList = reviewList;
+    }
+
+
+
 
     public void addReview(Review review) {
 

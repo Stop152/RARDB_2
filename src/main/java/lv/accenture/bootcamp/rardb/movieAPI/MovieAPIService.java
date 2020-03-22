@@ -66,7 +66,7 @@ public class MovieAPIService {
 
 	}
 
-	public void getMovieById(String requestedMovieId) {
+	public Movie getMovieById(String requestedMovieId) {
 		try {
 			System.out.println(requestUrl + "?i=" + requestedMovieId + "&apikey=" + apiKey);
 
@@ -97,6 +97,8 @@ public class MovieAPIService {
 			movie = new Movie();
 			movie = objectMapper.readValue(jsonResponse, Movie.class);
 			System.out.println("Movie : " + movie.toString());
+
+			return movie;
 
 		} catch (Exception e) {
 

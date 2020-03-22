@@ -2,6 +2,8 @@ package lv.accenture.bootcamp.rardb.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 public class MoviePreview {
 
 	@JsonProperty("Title")
@@ -56,20 +58,20 @@ public class MoviePreview {
 		this.poster = poster;
 	}
 
-//	public Movie selectMovie(String imdbID) {
-//		MovieSearch movieSearch;
-//		MoviePreview moviePreview = movieSearch.get;
-//		imdbID = moviePreview.getImdbID();
-//		Movie movie;
-//
-//		//iziet cauri listam, ja stringi equals, izvelas to
-//		if (imdbID.equals(movie.getImdbID())){
-//			return movie;
-//		}
-//
-//
-//		return movie;
-//	}
+	public MoviePreview selectPreviewItem(String imdbID) {
+
+		MoviePreview moviePreview = new MoviePreview();
+		MovieSearch movieSearch = new MovieSearch();
+		List<MoviePreview> previewList = movieSearch.getSearch();
+
+		for (int i = 0; i < previewList.size(); i++) {
+			if (moviePreview.getImdbID() == imdbID) {
+				return moviePreview;
+			}
+		}
+
+		return null;
+	}
 
 
 

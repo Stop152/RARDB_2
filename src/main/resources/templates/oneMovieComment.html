@@ -1,35 +1,69 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>One Movie</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container">
-    <h3>COMMENTS ABOUT</h3>
-    <td th:text="${movie.title}"/>
-    <td th:text="${movie.year}"/>
-    <td>
-        <img th:src="${movie.poster}" height="150px"/>
-    </td>
-    <table class="table table-bordered">
-        <tr>
-            <th>COMMENT</th>
-    <!--        <th>RANK</th> -->
-        </tr>
-        <tr th:each="movie: ${movies}">
-            <td th:text="${movie.comment}"/>
-     <!--       <td th:text="${movie.rank}"/> -->
-    </table>
-    <div class="form-group col-md-8">
-        <input type="submit" class="btn btn-primary" value="ADD YOUR COMMENT">
+<div>
+    <a th:href="@{/movie}" class="btn btn-outline-primary"> HOME </button></a>
+    <a th:href="@{/home}" class="btn btn-outline-primary"> EXIT </button></a>
+    <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </button></a>
+</div>
+<div id="full_page">
+    <div class="container" id="first">
+        <h3>COMMENTS ABOUT</h3>
+        <div th:text="${movie.title}"/>
+        <div th:text="${movie.year}"/>
+        <div>
+            <img th:src="${movie.poster}" height="150px"/>
+        </div>
     </div>
-    <div>
-        <a th:href="@{/movie}" class="btn btn-outline-primary"> HOME </button></a>
-        <a th:href="@{/home}" class="btn btn-outline-primary"> EXIT </button></a>
-        <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </button></a>
+
+
+    <div id="second">
+        <table class="table table-bordered">
+            <tr>
+                <th>COMMENT</th>
+
+            </tr>
+            <tr th:each="movie: ${movies}">
+                <td th:text="${movie.review}"/>
+
+        </table>
+        <br>
+
+
+        <div class="container">
+            <form action="/movie/add_review">
+
+
+                <!--        <div class="row">   -->
+                <div class="col-25">
+                    <label for="subject">Subject</label>
+                </div>
+                <br>
+                <div class="col-75">
+                        <textarea id="subject" name="subject" placeholder="Write your review here..."
+                                  style="height:200px;width:100%"></textarea>
+                </div>
+                <!--       </div>  -->
+                <div class="row">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+
+
+        <!--  <a th:href="@{/movie/review/submit/{id}(id=${review.id})}" class="btn btn-outline-primary">
+                 <span>Submit</span>
+             </a>    -->
+
+
     </div>
 </div>
+
+
 </body>
 </html>

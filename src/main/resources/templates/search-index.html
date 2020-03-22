@@ -16,13 +16,24 @@
                 <th>YEAR</th>
                 <th>TYPE</th>
                 <th>POSTER</th>
+                <th>ACTIONS</th>
             </tr>
             <tr th:each="movieCandidate : ${movieCandidates}">
                 <td th:text="${movieCandidate.title}"/>
+             <!--   <td>
+                    <a th:href="@{/movie/select_movie/{imdbID}(imdbID=${movieCandidate.imdbID})}}" > "th:text="${movieCandidate.title}" </a>
+                </td> -->
+
+           <!--     <td th:text="${movieCandidate.title}"/>  -->
                 <td th:text="${movieCandidate.year}"/>
                 <td th:text="${movieCandidate.type}"/>
                 <td>
                     <img th:src="${movieCandidate.poster}" height="150px"/>
+                </td>
+                <td>
+                    <a th:href="@{/movie/select_movie/{id}(id=${movieCandidate.imdbID})}" class="btn btn-outline-primary">
+                        <span>Read more</span>
+                    </a>
                 </td>
             </tr>
         </table>
