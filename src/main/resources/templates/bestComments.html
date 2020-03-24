@@ -7,6 +7,7 @@
 </head>
 <body>
 <div class="container">
+
     <h3> TOP RATINGS </h3>
     <form th:action="@{/movie/search}" method="get">
         <input type="text" name="movieTitle" id="movieTitle" th:value="${movieTitle}"/>
@@ -19,12 +20,14 @@
                 <th>ID</th>
                 <th>TITLE</th>
                 <th>YEAR</th>
+                <th>TYPE</th>
                 <th>POSTER</th>
             </tr>
             <tr th:each="movie: ${movies}">
                 <td th:text="${movie.imdbID}"/>
                 <td th:text="${movie.title}"/>
                 <td th:text="${movie.year}"/>
+                <td th:text="${movie.type}"/>
                 <td>
                     <img th:src="${movie.poster}" width="110"/>
                 </td>
@@ -33,7 +36,11 @@
         <div>
             <a th:href="@{/movie}" class="btn btn-outline-primary"> HOME </button></a>
             <a th:href="@{/home}" class="btn btn-outline-primary"> EXIT </button></a>
-            <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </button></a> </div>
+            <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </button></a>
+            <a th:href="@{/logout}" class="btn btn-outline-primary"> LOGOUT </button></a>
+        </div>
+
+
     </div>
 </div>
 </body>

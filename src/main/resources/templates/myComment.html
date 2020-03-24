@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
+    <div class="welcome"><span sec:authentication="name"> </span>
+</div>
     <title>Comment</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -17,6 +19,7 @@
           th:object="${movie}" method="post">
         <div class="row">
             <div class="form-group col-md-8">
+
                 <label for="review" class="col-form-label"> MY COMMENT </label>
                 <input type="text" th:field="*{review}" class="form-control" id="review">
                 <span th:if="${#fields.hasErrors('review')}" th:errors="*{review}" class="text-danger"/>
@@ -33,8 +36,11 @@
         </form>
 
         <div>
-            <a th:href="@{/movie}" class="btn btn-outline-primary"> HOME </button></a>
-            <a th:href="@{/home}" class="btn btn-outline-primary"> EXIT </button></a>
+            <a th:href="@{/movie}" class="btn btn-outline-primary"> BACK TO SEARCH MOVIE </button></a>
+            <a th:href="@{/}" class="btn btn-outline-primary"> EXIT </button></a>
+            <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </a>
+            <a th:href="@{/logout}" class="btn btn-outline-primary"> LOGOUT </button></a>
+
         </div>
     </div>
     </body>

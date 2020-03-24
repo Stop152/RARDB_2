@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Movie list</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
@@ -8,6 +8,11 @@
 <body>
 
 <div class="container">
+    </form>
+    <br>
+    <div
+        class="welcome"> <span sec:authentication="name"> </span>
+
     <h3>CLICK ON THE MOVIE TO SEE THE COMMENTS OR LEAVE YOUR COMMENT</h3>
     <div th:if="${not #lists.isEmpty(movieSearch)}">
         <table class="table table-bordered">
@@ -50,8 +55,11 @@
     <div>
         <a th:href="@{/movie}" class="btn btn-outline-primary"> BACK TO SEARCH MOVIE </button></a>
         <a th:href="@{/}" class="btn btn-outline-primary"> EXIT </button></a>
-        <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </button></a>
+        <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </a>
+            <a th:href="@{/logout}" class="btn btn-outline-primary"> LOGOUT </button></a>
+
     </div>
+</div>
 </div>
 </body>
 </html>

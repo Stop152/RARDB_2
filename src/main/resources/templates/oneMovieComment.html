@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
+     <div class="welcome"> <span sec:authentication="name"> </span>
+</div>
     <title>One Movie</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
 <div>
-    <a th:href="@{/movie}" class="btn btn-outline-primary"> HOME </button></a>
-    <a th:href="@{/home}" class="btn btn-outline-primary"> EXIT </button></a>
-    <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </button></a>
+    <a th:href="@{/movie}" class="btn btn-outline-primary"> BACK TO SEARCH MOVIE </button></a>
+    <a th:href="@{/}" class="btn btn-outline-primary"> EXIT </button></a>
+    <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </a>
+    <a th:href="@{/logout}" class="btn btn-outline-primary"> LOGOUT </button></a>
+
 </div>
 <div id="full_page">
     <div class="container" id="first">
