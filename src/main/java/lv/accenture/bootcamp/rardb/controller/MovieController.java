@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 import lv.accenture.bootcamp.rardb.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,31 +46,6 @@ public class MovieController {
         return "bestComments";
     }
 
-    @GetMapping("/search_results")
-    public String searchIndex(Model model) {
-
-        MovieSearch movieSearch = new MovieSearch();
-        movieSearch = movieAPIService.searchMoviePhrase("robin");
-        model.addAttribute("movieSearch", movieSearch);
-        model.addAttribute("movieCandidates", movieSearch.getSearch());
-
-        return "search-index";
-    }
-
-
-
-    @GetMapping("/movie/select_movie")
-    public String selectMovie(@PathVariable(value = "imdbID") String imdbID, Model model) {
-
-        Optional<Movie> movie = Optional.ofNullable(movieAPIService.getMovieById(imdbID));
-
-  //     Movie movie = movieAPIService.getMovieById(imdbID);
-
-        model.addAttribute("movie", movie.get());
-        return "oneMovieComment";
-    }
-
-
     @GetMapping("/movie/search")
     public String searchMovies(@RequestParam(value = "movieTitle") String movieTitle, Model model) {
 
@@ -83,30 +57,37 @@ public class MovieController {
         return "search-index";
     }
 
+    @GetMapping("/movie/select_movie/{imdbID}")
+    public String selectMovie(@PathVariable(value = "imdbID") String imdbID, Model model) {
+        Review review = new Review();
+        review.setMovieId(imdbID);
+        Movie movie = movieAPIService.getMovieById(imdbID);
+        model.addAttribute("movie", movie);
+        model.addAttribute("userReview", review);
+        List<Review> matchedReviews = reviewRepository.findByMovieId(imdbID);
+        model.addAttribute("reviews", matchedReviews);
+
+        return "oneMovieComment";
+    }
 
     @PostMapping("/movie/add_review/{imdbID}")
-    public String addReview(@PathVariable(value = "imdbID") String imdbID, @Valid Review reviewToAdd, BindingResult
-            bindingResult) {
+    public String addReview(@PathVariable(value = "imdbID") String imdbID, Model model, @Valid Review review, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "add-review";
+            System.out.println("binding result error");
+            return "oneMovieComment";
         }
 
+        review.setMovieId(imdbID);
+        reviewRepository.save(review);
         Movie movie = movieAPIService.getMovieById(imdbID);
-        movieRepository.save(movie);
-        reviewToAdd.setMovieId(imdbID);
-        reviewRepository.save(reviewToAdd);
-        movie.addReview(reviewToAdd);
+        model.addAttribute("movie", movie);
+        List<Review> matchedReviews = reviewRepository.findByMovieId(imdbID);
 
 
-        return "redirect:/movie";
+        model.addAttribute("reviews", matchedReviews);
+
+        return "comment-is-added";
 
     }
 
-
-//    @GetMapping("/movie/delete-review/{imdbId}")
-//    public String clearReviews(@PathVariable String imdbId) {
-//        movieRepository.deleteAllReviews();
-//        movieRepository.deleteAllRating();
-//        return "redirect:/movie";
-//    }
 }
