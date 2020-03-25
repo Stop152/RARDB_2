@@ -12,6 +12,13 @@
     <br>
     <div
         class="welcome"> <span sec:authentication="name"> </span>
+        <div>
+            <a th:href="@{/movie}" class="btn btn-outline-primary"> BACK TO SEARCH MOVIE </button></a>
+            <a th:href="@{/}" class="btn btn-outline-primary"> EXIT </button></a>
+            <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </a>
+            <a th:href="@{/logout}" class="btn btn-outline-primary"> LOGOUT </button></a>
+
+        </div>
 
     <h3>CLICK ON THE MOVIE TO SEE THE COMMENTS OR LEAVE YOUR COMMENT</h3>
     <div th:if="${not #lists.isEmpty(movieSearch)}">
@@ -52,13 +59,7 @@
         </div>
     </div>
     <br/><br/>
-    <div>
-        <a th:href="@{/movie}" class="btn btn-outline-primary"> BACK TO SEARCH MOVIE </button></a>
-        <a th:href="@{/}" class="btn btn-outline-primary"> EXIT </button></a>
-        <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </a>
-            <a th:href="@{/logout}" class="btn btn-outline-primary"> LOGOUT </button></a>
 
-    </div>
 </div>
 </div>
 </body>
