@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <div class="welcome"><span sec:authentication="name"> </span>
+    </div>
+    <title>One Movie</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div>
+    <a th:href="@{/movie}" class="btn btn-outline-primary"> BACK TO SEARCH MOVIE </button></a>
+    <a th:href="@{/}" class="btn btn-outline-primary"> EXIT </button></a>
+    <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </a>
+    <a th:href="@{/logout}" class="btn btn-outline-primary"> LOGOUT </button></a>
+
+</div>
+<div id="full_page">
+    <div class="container" id="first">
+        <h3>COMMENTS ABOUT</h3>
+        <div th:text="${movie.title}"/>
+        <div th:text="${movie.year}"/>
+        <div>
+            <img th:src="${movie.poster}" height="150px"/>
+        </div>
+    </div>
+
+
+    <div id="second">
+        <table class="table table-bordered">
+            <tr>
+                <th>COMMENT</th>
+
+            </tr>
+            <tr>
+                <td th:text="${review.text}"/>
+            </tr>
+        </table>
+        <br>
+        <div>
+            <form th:action="@{/movie/select_movie/{imdbID}/review/{id}/rate(imdbID=${movie.imdbID},id=${review.id})}"
+                  th:object="${rating}" method="post">
+                <p>Rate the review:</p>
+                <input type="radio" id="one" name="value" value="1" th:field="*{value}">
+                <label for="one">1</label>
+                <input type="radio" id="two" name="value" value="2" th:field="*{value}">
+                <label for="two">2</label>
+                <input type="radio" id="three" name="value" value="3" th:field="*{value}">
+                <label for="three">3</label>
+                <input type="radio" id="four" name="value" value="4" th:field="*{value}">
+                <label for="four">4</label>
+                <input type="radio" id="five" name="value" value="5" th:field="*{value}">
+                <label for="five">5</label>
+                <input type="radio" id="six" name="value" value="6" th:field="*{value}">
+                <label for="six">6</label>
+                <input type="radio" id="seven" name="value" value="7" th:field="*{value}">
+                <label for="seven">7</label>
+                <input type="radio" id="eight" name="value" value="8" th:field="*{value}">
+                <label for="eight">8</label>
+                <input type="radio" id="nine" name="value" value="9" th:field="*{value}">
+                <label for="nine">9</label>
+                <input type="radio" id="ten" name="value" value="10" th:field="*{value}">
+                <label for="ten">10</label>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+
+</body>
+</html>

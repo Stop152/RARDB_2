@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import lv.accenture.bootcamp.rardb.repository.RatingRepository;
 import lv.accenture.bootcamp.rardb.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,9 @@ public class MovieController {
 
     @Autowired
     private ReviewRepository reviewRepository;
+
+    @Autowired
+    private RatingRepository ratingRepository;
 
     @Autowired
     private Optional<Movie> movieObject;
@@ -89,5 +93,48 @@ public class MovieController {
         return "comment-is-added";
 
     }
+
+    @GetMapping("/movie/select_movie/{imdbID}/review/{id}")
+    public String selectReview(@PathVariable(value = "imdbID") String imdbID, @PathVariable(value = "id") Integer id, Model model) {
+
+        Movie movie = movieAPIService.getMovieById(imdbID);
+        model.addAttribute("movie", movie);
+        Optional<Review> review = reviewRepository.findById(id);
+        model.addAttribute("review", review.get());
+        Rating rating = new Rating();
+        model.addAttribute("rating", rating);
+
+        return "selected-review";
+    }
+
+    @PostMapping("/movie/select_movie/{imdbID}/review/{id}/rate")
+    public String rateReview(@PathVariable(value = "imdbID") String imdbID, @PathVariable(value = "id") Integer id,
+                             Rating rating, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            System.out.println("binding result error");
+            return "redirect:/movie";
+        }
+
+        Optional<Review> optional = reviewRepository.findById(id);
+        Review review = optional.get();
+        rating = ratingRepository.save(rating);
+        review.addRating(rating, review);
+
+        review = reviewRepository.save(review);
+
+        return "redirect:/movie";
+
+    }
+
+
+//    @GetMapping("/movie/bestComments")
+//    public String topRatings (Model model) {
+//     //   List<Review> movieList = (List<Review>) movieRepository.findTop10ReviewByRating();
+//        Iterable<Review> movies = movieRepository.findTop10ReviewByRating();
+//        model.addAttribute("bestComments", movies);
+//        return "bestComment";
+//    }
+
 
 }

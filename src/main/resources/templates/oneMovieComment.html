@@ -35,6 +35,11 @@
             </tr>
             <tr th:each="review: ${reviews}">
                 <td th:text="${review.text}"/>
+                <td>
+                    <a th:href="@{/movie/select_movie/{imdbID}/review/{id}(imdbID=${movie.imdbID},id=${review.id})}" class="btn btn-outline-primary">
+                        <span>Rate it!</span>
+                    </a>
+                </td>
             </tr>
         </table>
         <br>
@@ -60,8 +65,8 @@
 
                 </div>
                 <!--       </div>  -->
-                <div class="row">
-                    <input type="submit" value="Submit">
+                <div class="row" >
+                    <input type="submit" value="Submit" class="btn btn-outline-primary">
                 </div>
             </form>
         </div>
