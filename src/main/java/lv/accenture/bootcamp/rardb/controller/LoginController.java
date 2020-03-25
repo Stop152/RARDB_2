@@ -27,14 +27,6 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value={"/guest"}, method = RequestMethod.GET)
-    public ModelAndView guest() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("guest");
-        return modelAndView;
-    }
-
-
     @RequestMapping(value={"/login"}, method = RequestMethod.GET)
     public ModelAndView login(){
         ModelAndView modelAndView = new ModelAndView();
