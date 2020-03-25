@@ -29,11 +29,16 @@
     <div id="second">
         <table class="table table-bordered">
             <tr>
-                <th>COMMENT</th>
+                <th>ALL COMMENTS</th>
 
             </tr>
             <tr th:each="review: ${reviews}">
                 <td th:text="${review.text}"/>
+                <td>
+                    <a th:href="@{/movie/select_movie/{imdbID}/review/{id}(imdbID=${movie.imdbID},id=${review.id})}" class="btn btn-outline-primary">
+                        <span>Rate it!</span>
+                    </a>
+                </td>
             </tr>
         </table>
         <br>
