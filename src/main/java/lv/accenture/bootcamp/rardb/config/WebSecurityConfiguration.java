@@ -22,9 +22,10 @@ import javax.annotation.PostConstruct;
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
-
+    //TODO: BCryptPasswordEncoder class is not Spring @Component, therefore it is not @Autowireble
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
@@ -45,7 +46,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-
+        // TODO : current realisation allows anonymous users to write & rate review (but should not)
         http.
                 authorizeRequests()
                 .antMatchers("/").permitAll()

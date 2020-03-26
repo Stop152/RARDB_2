@@ -23,9 +23,11 @@ public class MovieAPIService {
 	@Value("${api.omdb.key}")
 	private String apiKey;
 
+	//TODO : 1) unused 2) access modifiers?
 	List<Movie> movieList;
 	Movie movie;
 
+	//TODO : huge copy paste across all 3 methods, consider move common part in private method
 	public void getMovieByTitle(String requestedMovieTitle) {
 		requestedMovieTitle = requestedMovieTitle.replaceAll(" ", "%20");
 		try {

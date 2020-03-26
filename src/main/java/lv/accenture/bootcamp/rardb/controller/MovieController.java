@@ -36,6 +36,8 @@ public class MovieController {
     @Autowired
     private RatingRepository ratingRepository;
 
+    //TODO: Model objects never should be @Component (at least singleton), therefore not @Autowirable
+    // And BTW it is unused
     @Autowired
     private Optional<Movie> movieObject;
 
@@ -53,6 +55,7 @@ public class MovieController {
     @GetMapping("/movie/search")
     public String searchMovies(@RequestParam(value = "movieTitle") String movieTitle, Model model) {
 
+        //TODO: unnecessary split on declaration / initialisation
         MovieSearch movieSearch = new MovieSearch();
         movieSearch = movieAPIService.searchMoviePhrase(movieTitle);
         model.addAttribute("movieSearch", movieSearch);
@@ -65,6 +68,8 @@ public class MovieController {
     public String selectMovie(@PathVariable(value = "imdbID") String imdbID, Model model) {
         Review review = new Review();
         review.setMovieId(imdbID);
+        //TODO: If movie already has reviews (and saved in DB) no need to call
+        // external API for getting movie data, we can take it from our DB
         Movie movie = movieAPIService.getMovieById(imdbID);
         model.addAttribute("movie", movie);
         model.addAttribute("userReview", review);
@@ -121,6 +126,7 @@ public class MovieController {
         rating = ratingRepository.save(rating);
         review.addRating(rating, review);
 
+        //TODO: Here it is not necessary to assign new value after save (review = ...)
         review = reviewRepository.save(review);
 
         return "redirect:/movie";

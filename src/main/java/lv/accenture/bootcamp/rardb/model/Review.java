@@ -11,6 +11,7 @@ import java.util.List;
 @Entity
 public class Review {
 
+    //TODO: Application is about huge & meaningful reviews, hence 256 symbols are not enough
     @Size(min = 2, max = 256, message = "The comment is too long")
     private String text;
     //   private User user; //japadoma, ka no sejienes id var izvilkt
