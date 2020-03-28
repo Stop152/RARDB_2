@@ -1,12 +1,11 @@
 package lv.accenture.bootcamp.rardb.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
+import lv.accenture.bootcamp.rardb.repository.MovieRepository;
 import lv.accenture.bootcamp.rardb.repository.RatingRepository;
 import lv.accenture.bootcamp.rardb.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +43,8 @@ public class MovieController {
 
     @GetMapping("/movie")
     public String movieIndex(Model model) {
-//        Iterable<Movie> movie = movieRepository.findAll();
-//        model.addAttribute("movie", movie);
+        Iterable<Movie> movie = movieRepository.findAll();
+        model.addAttribute("movie", movie);
 //        movieAPIService.getMovieByTitle("John Wick"); //shis ir testam
 //        movieAPIService.searchMoviePhrase("Back to"); //shis ir testam
 //        movieAPIService.getMovieById("tt0096895"); //shis ir testam
@@ -134,13 +133,13 @@ public class MovieController {
     }
 
 
-//    @GetMapping("/movie/bestComments")
-//    public String topRatings (Model model) {
-//     //   List<Review> movieList = (List<Review>) movieRepository.findTop10ReviewByRating();
-//        Iterable<Review> movies = movieRepository.findTop10ReviewByRating();
-//        model.addAttribute("bestComments", movies);
-//        return "bestComment";
-//    }
+    @GetMapping("/movie/bestComments")
+    public String topRatings (Model model) {
+       List<Review> movieList = (List<Review>) movieRepository.findTop10Rating();
+        Iterable<Review> movies = movieRepository.findTop10Rating();
+        model.addAttribute("bestComments", movies);
+        return "bestComment";
+    }
 
 
 }

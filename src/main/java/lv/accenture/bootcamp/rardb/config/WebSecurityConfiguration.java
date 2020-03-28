@@ -22,17 +22,6 @@ import javax.annotation.PostConstruct;
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
-    //TODO: BCryptPasswordEncoder class is not Spring @Component, therefore it is not @Autowireble
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder;
-    }
-
-
     @Autowired
     private MyUserDetailsService userDetailsService;
 
@@ -53,10 +42,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/movie/**").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/registration").permitAll()
-                .antMatchers("/search-index/**").permitAll()
-                .antMatchers("/index/**").permitAll()
-                .antMatchers("/bestComments/**").permitAll()
-                .antMatchers("/oneMovieComment/**").permitAll()
+              //  .antMatchers("/movie/select_movie/{imdbID}/**").permitAll()
+                .antMatchers("/movie/search/**").permitAll()
+              //  .antMatchers("/movie/select_movie/{imdbID}/review/{id}/**").permitAll()
                 .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
                 .authenticated()
                 .and().csrf().disable()
