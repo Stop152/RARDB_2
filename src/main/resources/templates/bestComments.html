@@ -22,8 +22,8 @@
                 <th>TYPE</th>
                 <th>POSTER</th>
             </tr>
-            <tr th:each="movie: ${movies}">
-                <td th:text="${movie.imdbID}"/>
+            <tr th:each="review: ${reviews}">
+                <td th:text="${review.text}"/>
                 <td th:text="${movie.title}"/>
                 <td th:text="${movie.year}"/>
                 <td th:text="${movie.type}"/>
