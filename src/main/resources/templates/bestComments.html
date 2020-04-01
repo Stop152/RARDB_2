@@ -1,49 +1,63 @@
 <! DOCTYPE html>
-<html lang="lv" xmlns: th="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="lv" xmlns: th="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
+    <div class="welcome">    <span sec:authentication="name"> </span>
+
     <title>MOVIE'S COMMENTS</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-</head>
+    <style>
+th {
+text-align: center;
+}
+</style>
+</div>
 <body>
 <div class="container">
-    <h3> TOP RATINGS </h3>
+    <h3 style=" font-family:verdana; color:black;"><b>TOP RATINGS</b> </h3>
+
     <form th:action="@{/movie/search}" method="get">
         <input type="text" name="movieTitle" id="movieTitle" th:value="${movieTitle}"/>
         <input type="submit" value="SEARCH MOVIE"/>
     </form>
-   <!-- <div th:if="${not #lists.isEmpty(movies)}"> -->
+    <!-- <div th:if="${not #lists.isEmpty(movies)}"> -->
     <div>
         <table class="table table-bordered">
             <tr>
             <tr>
                 <th>REVIEW ID</th>
                 <th>RATING</th>
-         <!--       <th>Review</th> -->
+                <!--       <th>Review</th> -->
                 <th>TITLE</th>
-      <!--          <th>YEAR</th> -->
-     <!--           <th>POSTER</th>  -->
+                <!--          <th>YEAR</th> -->
+                <!--           <th>POSTER</th>  -->
             </tr>
             <tr th:each="review: ${reviews}">
                 <td th:text="${review.reviewId}"/>
                 <td th:text="${review.averageRating}"/>
-        <!--        <td th:text="${review.text}"/> -->
+                <!--        <td th:text="${review.text}"/> -->
                 <td th:text="${review.movieTitle}"/>
-     <!--           <td th:text="${review.movieYear}"/> -->
+                <!--           <td th:text="${review.movieYear}"/> -->
 
-         <!--       <td>
-                    <img th:src="${review.moviePoster}" width="110"/>
-                </td> -->
+                <!--       <td>
+                           <img th:src="${review.moviePoster}" width="110"/>
+                       </td> -->
             </tr>
         </table>
-        <div>
-            <a th:href="@{/movie}" class="btn btn-outline-primary"> BACK TO SEARCH MOVIE </button></a>
-            <a th:href="@{/}" class="btn btn-outline-primary"> EXIT </button></a>
-            <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </a>
-            <a th:href="@{/logout}" class="btn btn-outline-primary"> LOGOUT </button></a>
-        </div>
+
 
 
     </div>
 </div>
+</br></br>
+<div>
+
+    <a th:href="@{/}" class="btn btn-outline-primary"> EXIT </button></a>
+    <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </a>
+    <a th:href="@{/logout}" class="btn btn-outline-primary"> LOGOUT </button></a>
+
+</div>
+</br></br>
+<img src= "https://c1.wallpaperflare.com/preview/39/122/576/film-movie-cinema-reel.jpg" style="width:100%" height="250px"/>
 </body>

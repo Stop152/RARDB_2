@@ -19,7 +19,7 @@
 
     <img th:src="@{/images/images.jpg}" class="img-responsive center-block" width="300" height="300" alt="Logo"/>
     <form th:action="@{/login}" method="POST" class="form-signin">
-        <h3 class="form-signin-heading" th:text="Welcome"></h3>
+        <h1 style="text-align:center; font-family:verdana; color:black;" > <b> WELCOME! </b> </h1>
         <br/>
 
         <input type="text" id="user_name" name="user_name" placeholder="User Name"
@@ -30,13 +30,9 @@
         <div align="center" th:if="${param.error}">
             <p style="font-size: 20; color: #FF1C19;">User Name or Password invalid, please verify</p>
         </div>
+
         <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit"
                 th:text="Login"></button>
-
-
-        <security:http pattern="/**" use-expressions="true" auto-config="true">
-            <security:intercept-url pattern="/guest/**" access="permitAll()"/>
-        </security:http>
 
         <br/>
 
@@ -46,5 +42,6 @@
 
 </div>
 </body>
+<img src= "https://c1.wallpaperflare.com/preview/39/122/576/film-movie-cinema-reel.jpg" style="width:100%" height="250px"/>
 </body>
 </html>

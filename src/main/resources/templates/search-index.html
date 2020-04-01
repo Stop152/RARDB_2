@@ -4,6 +4,11 @@
     <title>Movie list</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <style>
+th {
+text-align: center;
+}
+</style>
 </head>
 <body>
 
@@ -12,15 +17,10 @@
     <br>
     <div
         class="welcome"> <span sec:authentication="name"> </span>
-        <div>
-            <a th:href="@{/movie}" class="btn btn-outline-primary"> BACK TO SEARCH MOVIE </button></a>
-            <a th:href="@{/}" class="btn btn-outline-primary"> EXIT </button></a>
-            <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </a>
-            <a th:href="@{/logout}" class="btn btn-outline-primary"> LOGOUT </button></a>
 
-        </div>
+        <h1 style="text-align:center; font-family:verdana; color:black;" > <b> CLICK ON THE MOVIE </b> </h1>
+        <h3 style="text-align:center; font-family:arial; color:grey;" > to see the comments or leave your comment </h3>
 
-    <h3>CLICK ON THE MOVIE TO SEE THE COMMENTS OR LEAVE YOUR COMMENT</h3>
     <div th:if="${not #lists.isEmpty(movieSearch)}">
         <table class="table table-bordered">
             <tr>
@@ -62,5 +62,16 @@
 
 </div>
 </div>
+
+</br></br>
+<div>
+    <a th:href="@{/movie}" class="btn btn-outline-primary"> BACK TO SEARCH MOVIE </button></a>
+    <a th:href="@{/}" class="btn btn-outline-primary"> EXIT </button></a>
+    <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </a>
+    <a th:href="@{/logout}" class="btn btn-outline-primary"> LOGOUT </button></a>
+
+</div>
+</br></br>
+<img src= "https://c1.wallpaperflare.com/preview/39/122/576/film-movie-cinema-reel.jpg" style="width:100%" height="250px"/>
 </body>
 </html>
