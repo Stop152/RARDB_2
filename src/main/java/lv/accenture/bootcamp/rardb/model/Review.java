@@ -1,9 +1,6 @@
 package lv.accenture.bootcamp.rardb.model;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,16 +8,21 @@ import java.util.List;
 @Entity
 public class Review {
 
-    //TODO: Application is about huge & meaningful reviews, hence 256 symbols are not enough
-    @Size(min = 2, max = 256, message = "The comment is too long")
+
+    @Size(min = 2, max = 900, message = "Please, make your review shorter. You exceeded maximum character size: 900.")
     private String text;
     //   private User user; //japadoma, ka no sejienes id var izvilkt
-    @ElementCollection
-    private List<Rating> ratingList;
+
     @Id
     @GeneratedValue
     private Integer id;
     private String movieId;
+
+
+ //   private Movie movie;
+
+    @Transient
+    private Double averageRating = 0.0;
 
 
     public void setId(Integer id) {
@@ -47,7 +49,18 @@ public class Review {
         this.movieId = movieId;
     }
 
-//    public User getUser() {
+
+
+    public Double getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(Double averageRating) {
+        this.averageRating = averageRating;
+    }
+
+
+    //    public User getUser() {
 //        return user;
 //    }
 
@@ -55,15 +68,15 @@ public class Review {
 //        this.user = user;
 //    }
 
-    public List<Rating> getRatingList() {
+  /*  public List<Rating> getRatingList() {
         return ratingList;
     }
 
     public void setRatingList(List<Rating> ratingList) {
         this.ratingList = ratingList;
-    }
+    }*/
 
-    public void addRating (Rating rating, Review review) {
+   /* public void addRating(Rating rating, Review review) {
 
         if (review.getRatingList() == null) {
             ratingList = new ArrayList<>();
@@ -71,18 +84,21 @@ public class Review {
 
         rating.setReviewId(review.getId());
         ratingList.add(rating);
-    }
+    }*/
 
 
+  /*  public Double getAverageRating() {
 
-//    public Double getAverageRating() {
-//        Double sum = 0.0;
-//        for(int i = 0; i < ratingList.size(); i++) {
-//            sum =+ ratingList.get(i);
-//        }
-//        sum = sum / ratingList.size();
-//        return sum;
-//    }
 
+        averageRating = 0.0;
+        Rating rating;
+        for (int i = 0; i < ratingList.size(); i++) {
+            rating = ratingList.get(i);
+            averageRating = averageRating + rating.getValue();
+
+        }
+        averageRating = averageRating / ratingList.size();
+        return averageRating;
+    }*/
 
 }

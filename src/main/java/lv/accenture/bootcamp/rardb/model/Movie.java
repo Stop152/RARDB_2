@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -30,8 +31,8 @@ public class Movie {
 
 
 
-    @ElementCollection
-    private List<Review> reviewList;
+    /*@ElementCollection
+    private List<Review> reviewList;*/
 
 //	private Movie movie = new Movie();
 //	String movieId = movie.getImdbID();
@@ -77,26 +78,25 @@ public class Movie {
         this.poster = poster;
     }
 
-    public List<Review> getReviewList() {
-        return reviewList;
-    }
+//    public List<Review> getReviewList() {
+//        return reviewList;
+//    }
 
-    public void setReviewList(List<Review> reviewList) {
+/*//    public void setReviewList(List<Review> reviewList) {
         this.reviewList = reviewList;
-    }
+    }*/
 
 
 
+   /* public void addRating(Review review, Movie movie) {
 
-    public void addReview(Review review) {
-
-        for (int i = 0; i < reviewList.size(); i++) {
-            if (reviewList.get(i) == null) {
-                reviewList.add(review);
-            }
+        if (movie.getReviewList() == null) {
+            reviewList = new ArrayList<>();
         }
 
-    }
+        review.setMovieId(imdbID);
+        reviewList.add(review);
+    }*/
 
 
 

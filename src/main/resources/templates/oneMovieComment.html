@@ -35,7 +35,7 @@
             </tr>
             <tr th:each="review: ${reviews}">
                 <td th:text="${review.text}"/>
-                <td>
+                <td sec:authorize="isAuthenticated()">
                     <a th:href="@{/movie/select_movie/{imdbID}/review/{id}(imdbID=${movie.imdbID},id=${review.id})}" class="btn btn-outline-primary">
                         <span>Rate it!</span>
                     </a>
@@ -47,13 +47,11 @@
         <div>
             <a th:if="${loggedIn}" th:href="@{/movie/movie-add}"class="btn btn-outline-primary">Add your review!</a>
         </div>
-        <div class="container">
+        <div class="container" sec:authorize="isAuthenticated()">
             <form th:action="@{/movie/add_review/{id}(id=${userReview.movieId})}" th:object="${userReview}"
                   method="post">
 
-                <!-- (id=${movie.imdbID}) -->
 
-                <!--        <div class="row">   -->
 
                 <div class="col-25">
                     <label for="reviewText">Give your review:</label>

@@ -8,6 +8,7 @@ import lv.accenture.bootcamp.rardb.model.User;
 
 
 import lv.accenture.bootcamp.rardb.movieAPI.UserService;
+import lv.accenture.bootcamp.rardb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,6 +32,7 @@ public class LoginController {
     public ModelAndView login(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
+
         return modelAndView;
     }
 

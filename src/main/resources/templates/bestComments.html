@@ -12,24 +12,28 @@
         <input type="text" name="movieTitle" id="movieTitle" th:value="${movieTitle}"/>
         <input type="submit" value="SEARCH MOVIE"/>
     </form>
-    <div th:if="${not #lists.isEmpty(movies)}">
+   <!-- <div th:if="${not #lists.isEmpty(movies)}"> -->
+    <div>
         <table class="table table-bordered">
             <tr>
             <tr>
-                <th>ID</th>
+                <th>REVIEW ID</th>
+                <th>RATING</th>
+         <!--       <th>Review</th> -->
                 <th>TITLE</th>
-                <th>YEAR</th>
-                <th>TYPE</th>
-                <th>POSTER</th>
+      <!--          <th>YEAR</th> -->
+     <!--           <th>POSTER</th>  -->
             </tr>
             <tr th:each="review: ${reviews}">
-                <td th:text="${review.text}"/>
-                <td th:text="${movie.title}"/>
-                <td th:text="${movie.year}"/>
-                <td th:text="${movie.type}"/>
-                <td>
-                    <img th:src="${movie.poster}" width="110"/>
-                </td>
+                <td th:text="${review.reviewId}"/>
+                <td th:text="${review.averageRating}"/>
+        <!--        <td th:text="${review.text}"/> -->
+                <td th:text="${review.movieTitle}"/>
+     <!--           <td th:text="${review.movieYear}"/> -->
+
+         <!--       <td>
+                    <img th:src="${review.moviePoster}" width="110"/>
+                </td> -->
             </tr>
         </table>
         <div>

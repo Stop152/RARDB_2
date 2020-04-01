@@ -8,11 +8,13 @@ import javax.persistence.Id;
 public class Rating {
 
     //TODO: access modifiers ?
-    Double value;
-    Integer reviewId;
+    private Double value;
+    private Integer reviewId;
     @Id
     @GeneratedValue
-    Integer ratingId;
+    private Integer ratingId;
+
+    private String userName;
 
     //TODO : in such implementation any user can rate as much he wants (inluding review author)
     // good point is to save also userId (Spring Security has that data) and check before show
@@ -35,5 +37,12 @@ public class Rating {
         this.reviewId = reviewId;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 }
 

@@ -38,7 +38,7 @@
             </tr>
         </table>
         <br>
-        <div>
+        <div th:if="${userCanRate}">
             <form th:action="@{/movie/select_movie/{imdbID}/review/{id}/rate(imdbID=${movie.imdbID},id=${review.id})}"
                   th:object="${rating}" method="post">
                 <p>Rate the review:</p>

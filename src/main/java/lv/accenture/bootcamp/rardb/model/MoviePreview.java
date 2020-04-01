@@ -58,21 +58,7 @@ public class MoviePreview {
 		this.poster = poster;
 	}
 
-	//TODO : 1) unused 2) line 69 : comparing Strings by "==" is serious crime
-	public MoviePreview selectPreviewItem(String imdbID) {
 
-		MoviePreview moviePreview = new MoviePreview();
-		MovieSearch movieSearch = new MovieSearch();
-		List<MoviePreview> previewList = movieSearch.getSearch();
-
-		for (int i = 0; i < previewList.size(); i++) {
-			if (moviePreview.getImdbID() == imdbID) {
-				return moviePreview;
-			}
-		}
-
-		return null;
-	}
 
 
 

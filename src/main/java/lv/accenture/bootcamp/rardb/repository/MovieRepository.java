@@ -14,23 +14,23 @@ import java.util.List;
 
     public interface MovieRepository extends CrudRepository<Movie,String> {
 
-    @Query("Select c FROM Review c where c.movieTitle LIKE %:title%")
-    Movie findByTitle(@Param(value = "title") String title);
+//    @Query("Select c FROM Review c where c.movieTitle LIKE %:title%")
+//    Movie findByTitle(@Param(value = "title") String title);
+//
+//
+//    @Query(value = "SELECT*FROM Movie ORDER BY averageRank DESC LIMIT 10", nativeQuery = true)
+//    Iterable<Movie> findTopRatings();
 
-
-    @Query(value = "SELECT*FROM Movie ORDER BY averageRank DESC LIMIT 10", nativeQuery = true)
-    Iterable<Movie> findTopRatings();
-
-    default void addRanking(List<Movie> movieRatinglist) {
-        for (int i = 0; i < movieRatinglist.size(); i++) {
-            movieRatingList.get(i).setRanking(i + 1);
-        }
-
-
-    }
-
-    @Query("Select c FROM Movie c where c.movieTitle LIKE %:title%")
-    Movie findByTitle (@Param(value = "title") String title);
+//    default void addRanking(List<Movie> movieRatinglist) {
+//        for (int i = 0; i < movieRatinglist.size(); i++) {
+//            movieRatingList.get(i).setRanking(i + 1);
+//        }
+//
+//
+//    }
+//
+//    @Query("Select c FROM Movie c where c.movieTitle LIKE %:title%")
+//    Movie findByTitle(@Param(value = "title") String title);
 
 
 }
