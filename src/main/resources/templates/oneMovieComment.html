@@ -2,27 +2,27 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
       xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <div class="welcome"> <span sec:authentication="name"> </span>
-    </div>
-    <title>One Movie</title>
+
+</div>
+    <title>Movie</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <style>
-th {
-text-align: center;
-}
-</style>
 </head>
 <body>
-
+<div class="btn-group" role="group" aria-label="Basic example">
+    <a th:href="@{/movie}" class="btn btn-outline-primary"> Home </a>
+    <a th:href="@{/}" class="btn btn-outline-primary"> To Welcome Page </a>
+    <a th:href="@{/login}" class="btn btn-outline-primary" sec:authorize="!isAuthenticated()"> Log In </a>
+    <a th:href="@{/logout}" class="btn btn-outline-primary" sec:authorize="isAuthenticated()"> Log Out </a>
+</div> <br>
+<div class="welcome"> Logged in as: <span sec:authentication="name"> </span> </div>
 <div id="full_page">
     <div class="container" id="first">
-        <h3 style=" font-family:verdana; color:black;"><b>COMMENTS ABOUT</b> </h3>
-
+        <h3>COMMENTS ABOUT</h3>
         <div th:text="${movie.title}"/>
         <div th:text="${movie.year}"/>
         <div>
-            <img th:src="${movie.poster}" height="250px"/>
+            <img th:src="${movie.poster}" height="300px"/>
         </div>
     </div>
 
@@ -34,7 +34,7 @@ text-align: center;
 
             </tr>
             <tr th:each="review: ${reviews}">
-                <td th:text="${review.text}"/>
+                <td style="overflow: hidden;" th:text="${review.text}"/>
                 <td sec:authorize="isAuthenticated()">
                     <a th:href="@{/movie/select_movie/{imdbID}/review/{id}(imdbID=${movie.imdbID},id=${review.id})}" class="btn btn-outline-primary">
                         <span>Rate it!</span>
@@ -50,46 +50,24 @@ text-align: center;
         <div class="container" sec:authorize="isAuthenticated()">
             <form th:action="@{/movie/add_review/{id}(id=${userReview.movieId})}" th:object="${userReview}"
                   method="post">
-
-
-
                 <div class="col-25">
-                    <h3 style=" font-family:arial; color:black;" > GIVE YOUR REVIEW</h3>
-<!--                    <label for="reviewText">Give your review:</label>-->
+                    <label for="reviewText">Give your review:</label>
                 </div>
                 <br>
                 <div class="col-75">
                         <textarea id="reviewText" th:field="*{text}" placeholder="Write your review here..."
                                   style="height:200px;width:100%"></textarea>
-
                 </div>
-                <!--       </div>  -->
                 <div class="row" >
                     <input type="submit" value="Submit" class="btn btn-outline-primary">
                 </div>
             </form>
         </div>
-
-
-        <!--  <a th:href="@{/movie/review/submit/{id}(id=${review.id})}" class="btn btn-outline-primary">
-                 <span>Submit</span>
-             </a>    -->
-
-
+        <div sec:authorize="!isAuthenticated()" class="container"> Log in to leave or rate a review! </div>
     </div>
 </div>
-</br></br>
-</br></br>
-</br></br>
-<div>
-    <a th:href="@{/movie}" class="btn btn-outline-primary"> BACK TO SEARCH MOVIE </button></a>
-    <a th:href="@{/}" class="btn btn-outline-primary"> EXIT </button></a>
-    <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </a>
-    <a th:href="@{/logout}" class="btn btn-outline-primary"> LOGOUT </button></a>
+    </br></br>
 
-</div>
-</br></br>
-<img src= "https://c1.wallpaperflare.com/preview/39/122/576/film-movie-cinema-reel.jpg" style="width:100%" height="250px"/>
 
 </body>
 </html>

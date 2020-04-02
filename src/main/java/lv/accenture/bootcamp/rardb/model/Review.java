@@ -9,20 +9,24 @@ import java.util.List;
 public class Review {
 
 
-    @Size(min = 2, max = 900, message = "Please, make your review shorter. You exceeded maximum character size: 900.")
+    @Size(min = 2, max = 2000, message = "Please, make your review shorter. You exceeded maximum character size: 900.")
     private String text;
-    //   private User user; //japadoma, ka no sejienes id var izvilkt
 
     @Id
     @GeneratedValue
     private Integer id;
     private String movieId;
 
-
- //   private Movie movie;
-
     @Transient
     private Double averageRating = 0.0;
+    @Transient
+    private Integer ratingAmount;
+
+    private String userName;
+
+    private String movieTiltle;
+
+    private String movieYear;
 
 
     public void setId(Integer id) {
@@ -49,8 +53,6 @@ public class Review {
         this.movieId = movieId;
     }
 
-
-
     public Double getAverageRating() {
         return averageRating;
     }
@@ -59,46 +61,35 @@ public class Review {
         this.averageRating = averageRating;
     }
 
-
-    //    public User getUser() {
-//        return user;
-//    }
-
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
-
-  /*  public List<Rating> getRatingList() {
-        return ratingList;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setRatingList(List<Rating> ratingList) {
-        this.ratingList = ratingList;
-    }*/
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-   /* public void addRating(Rating rating, Review review) {
+    public String getMovieTiltle() {
+        return movieTiltle;
+    }
 
-        if (review.getRatingList() == null) {
-            ratingList = new ArrayList<>();
-        }
+    public void setMovieTiltle(String movieTiltle) {
+        this.movieTiltle = movieTiltle;
+    }
 
-        rating.setReviewId(review.getId());
-        ratingList.add(rating);
-    }*/
+    public String getMovieYear() {
+        return movieYear;
+    }
 
+    public void setMovieYear(String movieYear) {
+        this.movieYear = movieYear;
+    }
 
-  /*  public Double getAverageRating() {
+    public Integer getRatingAmount() {
+        return ratingAmount;
+    }
 
-
-        averageRating = 0.0;
-        Rating rating;
-        for (int i = 0; i < ratingList.size(); i++) {
-            rating = ratingList.get(i);
-            averageRating = averageRating + rating.getValue();
-
-        }
-        averageRating = averageRating / ratingList.size();
-        return averageRating;
-    }*/
-
+    public void setRatingAmount(Integer ratingAmount) {
+        this.ratingAmount = ratingAmount;
+    }
 }

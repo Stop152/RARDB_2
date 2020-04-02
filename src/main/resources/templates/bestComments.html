@@ -1,63 +1,55 @@
 <! DOCTYPE html>
-<html lang="lv" xmlns: th="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml"
-      xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="lv" xmlns: th="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml"  xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <div class="welcome">    <span sec:authentication="name"> </span>
-
-    <title>MOVIE'S COMMENTS</title>
+    <title>Top Reviews</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <style>
-th {
-text-align: center;
-}
-</style>
-</div>
+</head>
 <body>
+<div class="btn-group" role="group" aria-label="Basic example">
+    <a th:href="@{/movie}" class="btn btn-outline-primary"> Home </a>
+    <a th:href="@{/}" class="btn btn-outline-primary"> To Welcome Page </a>
+    <a th:href="@{/login}" class="btn btn-outline-primary" sec:authorize="!isAuthenticated()"> Log In </a>
+    <a th:href="@{/logout}" class="btn btn-outline-primary" sec:authorize="isAuthenticated()"> Log Out </a>
+</div> <br>
+<div class="welcome"> Logged in as: <span sec:authentication="name"> </span></div>
 <div class="container">
-    <h3 style=" font-family:verdana; color:black;"><b>TOP RATINGS</b> </h3>
-
+    <h3> TOP RATINGS </h3>
     <form th:action="@{/movie/search}" method="get">
         <input type="text" name="movieTitle" id="movieTitle" th:value="${movieTitle}"/>
         <input type="submit" value="SEARCH MOVIE"/>
     </form>
-    <!-- <div th:if="${not #lists.isEmpty(movies)}"> -->
+   <!-- <div th:if="${not #lists.isEmpty(movies)}"> -->
     <div>
         <table class="table table-bordered">
             <tr>
             <tr>
                 <th>REVIEW ID</th>
+                <th>REVIEW</th>
                 <th>RATING</th>
-                <!--       <th>Review</th> -->
                 <th>TITLE</th>
-                <!--          <th>YEAR</th> -->
-                <!--           <th>POSTER</th>  -->
+                <th>AUTHOR</th>
             </tr>
             <tr th:each="review: ${reviews}">
                 <td th:text="${review.reviewId}"/>
-                <td th:text="${review.averageRating}"/>
-                <!--        <td th:text="${review.text}"/> -->
-                <td th:text="${review.movieTitle}"/>
-                <!--           <td th:text="${review.movieYear}"/> -->
-
-                <!--       <td>
-                           <img th:src="${review.moviePoster}" width="110"/>
-                       </td> -->
+                <td th:text="${review.text}"/>
+                <td th:text="${review.averageRating} + '/' + ${review.ratingAmount}"/>
+                <td th:text="${review.movieTitle} + ', ' + ${review.year}"/>
+                <td>
+                    <span th:text="${review.userName}"/>
+                    <a th:href="@{/{username}/reviews(username=${review.userName})}" class="btn btn-outline-primary">
+                        <span>Visit</span>
+                    </a>
+                </td>
             </tr>
         </table>
 
 
 
     </div>
-</div>
-</br></br>
-<div>
+    </br></br>
 
-    <a th:href="@{/}" class="btn btn-outline-primary"> EXIT </button></a>
-    <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </a>
-    <a th:href="@{/logout}" class="btn btn-outline-primary"> LOGOUT </button></a>
 
 </div>
-</br></br>
 <img src= "https://c1.wallpaperflare.com/preview/39/122/576/film-movie-cinema-reel.jpg" style="width:100%" height="250px"/>
 </body>

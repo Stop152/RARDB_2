@@ -2,13 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
       xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <div class="welcome"><span sec:authentication="name"> </span>
     </div>
     <title>One Movie</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
+<div class="btn-group" role="group" aria-label="Basic example">
+    <a th:href="@{/movie}" class="btn btn-outline-primary"> Home </a>
+    <a th:href="@{/}" class="btn btn-outline-primary"> To Welcome Page </a>
+    <a th:href="@{/login}" class="btn btn-outline-primary" sec:authorize="!isAuthenticated()"> Log In </a>
+    <a th:href="@{/logout}" class="btn btn-outline-primary" sec:authorize="isAuthenticated()"> Log Out </a>
+</div> <br>
 
 <div id="full_page">
     <div class="container" id="first">
@@ -16,7 +21,7 @@
         <div th:text="${movie.title}"/>
         <div th:text="${movie.year}"/>
         <div>
-            <img th:src="${movie.poster}" height="150px"/>
+            <img th:src="${movie.poster}" height="300px"/>
         </div>
     </div>
 
@@ -59,20 +64,13 @@
                 <input type="submit" value="Submit">
             </form>
         </div>
+        <div th:unless="${userCanRate}"> You have already rated this review, or this is yours!</div>
 
 
     </div>
 </div>
 </br></br>
-<div>
-    <a th:href="@{/movie}" class="btn btn-outline-primary"> BACK TO SEARCH MOVIE </button></a>
-    <a th:href="@{/}" class="btn btn-outline-primary"> EXIT </button></a>
-    <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </a>
-    <a th:href="@{/logout}" class="btn btn-outline-primary"> LOGOUT </button></a>
 
-</div>
-</br></br>
-<img src= "https://c1.wallpaperflare.com/preview/39/122/576/film-movie-cinema-reel.jpg" style="width:100%" height="250px"/>
 
 
 </body>

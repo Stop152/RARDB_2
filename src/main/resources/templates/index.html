@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
 
-    <title>Web demo index</title>
+    <title>RARDB2</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <style>
@@ -12,32 +12,32 @@ text-align: center;
 </style>
 </head>
 <body id="app-body">
-<div class="welcome">    <span sec:authentication="name"> </span>
-
+<div class="btn-group" role="group" aria-label="Basic example">
+    <a th:href="@{/movie}" class="btn btn-outline-primary"> Home </a>
+    <a th:href="@{/}" class="btn btn-outline-primary"> To Welcome Page </a>
+    <a th:href="@{/login}" class="btn btn-outline-primary" sec:authorize="!isAuthenticated()"> Log In </a>
+    <a th:href="@{/logout}" class="btn btn-outline-primary" sec:authorize="isAuthenticated()"> Log Out </a>
+</div> <br>
+<div class="welcome"> Logged in as: <span sec:authentication="name"> </span> </div>
 
 <div        class="container">
-<!--    <h1 style="text-align:center; font-family:verdana; color:black;" > <b> GROUP RARDB_2 FINAL WORK </b> </h1>-->
-<!--    <h3 style="text-align:center; font-family:arial; color:red;" > THE BEST WAY TO COMMENT THE MOVIES! </h3>-->
 
 
-    <h3 style="text-align:center; font-family:verdana; color:black;"><b>GROUP RARDB_2 FINAL WORK</b> </h3>
+
+    <h3 style="text-align:center; font-family:verdana; color:black;"><b>RARDB2</b> </h3>
 
 
-    <h1 style="text-align:center; font-family:arial; color:red;"><b>THE BEST WAY TO COMMENT THE MOVIES!</b></h1>
-    <a th:href="@{/movie}" class="btn btn-outline-primary"> WELCOME! </button></a>
+    <h1 style="text-align:center; font-family:arial; color:red;"><b>The Best Way through Reviews!</b></h1>
+    <div ><a th:href="@{/movie}" class="btn btn-outline-primary"> WELCOME! </button></a></div>
+    <br/>
+    <div class="center"><img src="https://c4.wallpaperflare.com/wallpaper/123/991/646/avatar-blue-skin-james-cameron-s-movie-avatar-movie-poster-wallpaper-preview.jpg"></div>
 
-    <br/><br/>
-    <img src="https://c4.wallpaperflare.com/wallpaper/123/991/646/avatar-blue-skin-james-cameron-s-movie-avatar-movie-poster-wallpaper-preview.jpg">
-</div>
 
-</div></br>
-    <div>
+</div> </br>
 
-        <a th:href="@{/}" class="btn btn-outline-primary"> EXIT </button></a>
-        <a th:href="@{/login}" class="btn btn-outline-primary"> LOGIN </a>
-        <a th:href="@{/logout}" class="btn btn-outline-primary"> LOGOUT </button></a>
 
-    </div>
+
+
     </br></br>
     <img src= "https://c1.wallpaperflare.com/preview/39/122/576/film-movie-cinema-reel.jpg" style="width:100%" height="250px"/>
 </body>

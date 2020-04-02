@@ -13,6 +13,13 @@ text-align: center;
 </style>
 </head>
 <body>
+<div class="btn-group" role="group" aria-label="Basic example">
+    <a th:href="@{/movie}" class="btn btn-outline-primary"> Home </a>
+    <a th:href="@{/}" class="btn btn-outline-primary"> To Welcome Page </a>
+    <a th:href="@{/login}" class="btn btn-outline-primary" sec:authorize="!isAuthenticated()"> Log In </a>
+    <a th:href="@{/logout}" class="btn btn-outline-primary" sec:authorize="isAuthenticated()"> Log Out </a>
+</div> <br>
+<div class="welcome"> Logged in as: <span sec:authentication="name"> </span></div>
 <div class="container">
     <td th:text="${movie.title}"/>
     <td th:text="${movie.year}" />

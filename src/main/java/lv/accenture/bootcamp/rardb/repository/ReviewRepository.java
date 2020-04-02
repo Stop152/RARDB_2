@@ -12,7 +12,7 @@ import java.util.List;
 public interface ReviewRepository extends CrudRepository<Review, Integer> {
      List<Review> findByMovieId(String movieID);
 
-     @Query(value = "select rew.id as reviewId, m.title as movieTitle, avg(rat.value) as averageRating from review rew \n" +
+     @Query(value = "select rew.id as reviewId, rew.text as text, m.title as movieTitle, m.year as movieYear, rew.user_name as user_name, avg(rat.value) as averageRating from review rew \n" +
              "    join rating rat\n" +
              "        on rew.id = rat.review_id\n" +
              "    join movie m on rew.movie_id = m.imdbid\n" +
@@ -21,6 +21,8 @@ public interface ReviewRepository extends CrudRepository<Review, Integer> {
              "    limit 10", nativeQuery = true)
      List<Object[]> getTop10();
 
+
+     List<Review> findByUserName(String username);
 
 
 
